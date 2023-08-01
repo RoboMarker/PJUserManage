@@ -83,6 +83,8 @@ namespace UserManageRepository.Context
                 entity.ToTable("Menu");
 
                 entity.Property(e => e.MenuName).HasMaxLength(20);
+
+                entity.Property(e => e.MenuType).HasComment("選單類型");
             });
 
             modelBuilder.Entity<MenuPermission>(entity =>
@@ -90,10 +92,10 @@ namespace UserManageRepository.Context
                 entity.HasKey(e => e.MenuPermissionsId)
                     .HasName("PK_Table_1");
 
-                entity.Property(e => e.MenuId).HasColumnName("MenuID");
+                entity.Property(e => e.MenuPermissionsType).HasComment("權限類型(1:for Premissions,2:for UserId)");
 
-                entity.Property(e => e.MenuPermissionsName)
-                    .HasMaxLength(10)
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(16)
                     .IsFixedLength();
 
                 entity.HasOne(d => d.Menu)

@@ -2,6 +2,7 @@
 using Generally;
 using Microsoft.Extensions.Configuration;
 using System.Data;
+using System.Data.SqlTypes;
 using UserManageRepository.DataModels.Data;
 using UserManageRepository.Models.Input;
 using UserManageRepository.Models.ViewModels;
@@ -83,16 +84,28 @@ namespace UserManageRepository.Repository
             ";
             var result =  _DBconn.QueryData<MenuVM, DynamicParameters>(sqlCmd, paramters).Result.ToList();
             return result;
-
         }
 
 
-        public async Task<IEnumerable<MenuVM>> GetAllMenu(MenuInput input)
+        public async Task<IEnumerable<MenuVM>> GetAllMenu()
         {
             _DBconn = new MsDBConn2(_config);
             var sqlCmd = @" select * from Menu ";
             var result = await _DBconn.QueryData<MenuVM>(sqlCmd);
             return  result;
+
+        }
+
+        public async Task<int> Add(Menu pi)
+        {
+            MsDBConn_Dapper _DBconn = new MsDBConn_Dapper(_config);
+            var parmerter = new DynamicParameters();
+
+           // var result = await _DBconn.Insert<Menu>(sqlCmd);
+            // var result = await _DBconn.ExecuteData2<MenuPermission>(sqlCmd, mp);
+
+            var result = 1;
+            return result;
 
         }
 

@@ -13,6 +13,9 @@ namespace UserManageRepository.Models.Data
         public int MenuId { get; set; }
         public string? MenuName { get; set; }
         public byte? Status { get; set; }
+        /// <summary>
+        /// 選單類型
+        /// </summary>
         public int? MenuType { get; set; }
         public string? PermissionsId { get; set; }
         public string? CustomizedUserId { get; set; }
