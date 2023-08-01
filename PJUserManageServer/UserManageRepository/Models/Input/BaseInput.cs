@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace UserManageRepository.Models.Input
 {
-    public class MenuInput: BaseInput
+    public class BaseInput
     {
-        public string MenuName { get; set; }
-        public int PermissionsId { get; set; }
-
+        public string UserId { get; set; }
     }
 }

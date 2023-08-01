@@ -17,14 +17,22 @@ namespace PJUserManage.Controllers
             _imenuService = imenuService;
         }
 
+        [HttpPost]
+        public async Task<int> Add(MenuInput mp)
+        {
+            return await this._imenuService.Add(mp);
+        }
+
+
         [HttpGet("GetAllMenu")]
-        public async Task<IActionResult> GetAllMenu([FromQuery] MenuInput input)
+        public async Task<IActionResult> GetAllMenu()
         {
           //  MenuInput input = new MenuInput();
           //  input.UserId = UserId;
-            return Ok(await _imenuService.GetAllMenu(input));
+            return Ok(await _imenuService.GetAllMenu());
 
         }
+
 
         [HttpGet("GetUserHaveMenu")]
         public async Task<IActionResult> GetUserHaveMenu([FromQuery] MenuInput input)

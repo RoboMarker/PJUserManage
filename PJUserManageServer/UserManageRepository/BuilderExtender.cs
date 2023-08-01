@@ -27,6 +27,7 @@ namespace UserManageRepository
             builder.Services.AddSingleton(builder.Configuration);
 
             builder.Services.AddScoped<IMenuRepository, MenuRepository>();
+            builder.Services.AddScoped<IPermissionsRepository, PermissionsRepository>();
         }
     }
 }

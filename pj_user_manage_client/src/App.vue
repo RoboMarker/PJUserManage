@@ -1,17 +1,18 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <el-header>Header
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>|
-    <router-link to="/MenuList">MenuList</router-link>
-  </nav>
+      <el-header
+        >Header
+        <nav>
+          <router-link to="/">Home</router-link> |
+          <router-link to="/about">About</router-link>|
+          <router-link to="/MenuList">MenuList</router-link>
+        </nav>
       </el-header>
       <el-container>
-        <el-aside width="200px">  <Menu   :UserId="MEM2022112400002" /></el-aside>
+        <el-aside width="200px"> <Menu /></el-aside>
         <el-container>
-          <el-main>  
+          <el-main>
             <router-view></router-view>
           </el-main>
           <el-footer>Footer</el-footer>
@@ -22,23 +23,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent,ref,reactive } from 'vue';
-import Menu from './components/Menu/Menu.vue';
-import { ElHeader, ElAside,ElMain,ElFooter,ElContainer } from 'element-plus';
-import { default as axios } from 'axios';
+import { defineComponent, ref, reactive } from "vue";
+import Menu from "./components/Menu/Menu.vue";
+import { ElContainer, ElHeader, ElAside, ElMain, ElFooter } from "element-plus";
+import { default as axios } from "axios";
 
 export default defineComponent({
-  name: 'Main',
-    components: {
+  name: "Main",
+  components: {
+    ElContainer,
+    ElHeader,
+    ElAside,
+    ElMain,
+    ElFooter,
     Menu,
-    ElHeader, ElAside,ElMain,ElFooter,ElContainer 
   },
   setup() {
     // var loginToken=  localStorage.getItem('loginToken');
-    return{
-    }
+    return {};
   },
-})
+});
 </script>
 
 
