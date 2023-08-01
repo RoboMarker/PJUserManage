@@ -11,8 +11,6 @@ namespace UserManageRepository.Service.Interface
     public interface IMenuService
     {
         Task<IEnumerable<MenuVM>> GetUserHaveMenu(MenuInput input);
-        Task<IEnumerable<MenuVM>> GetAllMenu();
-
-        Task<int> Add(MenuInput mi);
+        Task<IEnumerable<MenuVM>> GetAllMenu(MenuInput input);
      }
 }

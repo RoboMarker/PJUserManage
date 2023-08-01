@@ -11,11 +11,7 @@
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
     "sourceMap": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
     "baseUrl": ".",
-    "outDir":"dist/js",//設定編譯後的js輸出目錄
     "types": [
       "webpack-env"
     ],
@@ -36,8 +32,7 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx",
-    "src/**/*.d.ts"
+    "tests/**/*.tsx"
   ],
   "exclude": [
     "node_modules"

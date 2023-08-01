@@ -1,19 +1,23 @@
-﻿using UserManageRepository.DataModels.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UserManageRepository.Models.Data;
 using UserManageRepository.Models.Input;
-using UserManageRepository.Models.ViewModels;
 using UserManageRepository.Repository.Interface;
-using UserManageRepository.Service.Interface;
+using UserManageRepository.Repository;
+using UserManageRepository.Models.ViewModels;
+using System.Collections;
 
-namespace UserManageRepository.Service
+namespace UserManageRepository.Service.Interface
 {
     public class MenuService : IMenuService
     {
         IMenuRepository _menuRepository;
-        IPermissionsRepository _permissionsRepository;
-        public MenuService(IMenuRepository menuRepository, IPermissionsRepository permissionsRepository)
+        public MenuService(IMenuRepository menuRepository)
         {
             this._menuRepository = menuRepository;
-            this._permissionsRepository = permissionsRepository;
         }
 
 
@@ -24,26 +28,11 @@ namespace UserManageRepository.Service
             return result;
         }
 
-        public async Task<IEnumerable<MenuVM>> GetAllMenu()
+        public async Task<IEnumerable<MenuVM>> GetAllMenu(MenuInput input)
         {
-            IEnumerable<MenuVM> result = await _menuRepository.GetAllMenu();
+            IEnumerable<MenuVM> result = await _menuRepository.GetAllMenu(input);
 
             return result;
-        }
-
-        public async Task<int> Add(MenuInput mi)
-        {
-            //MenuPermission mp = new MenuPermission();
-            Menu m = new Menu();
-            m.MenuName = mi.MenuName;
-            m.Status = 1;
-            m.MenuType = 1;
-            m.PermissionsId = mi.PermissionsId.ToString();
-
-            MenuPermission p = new MenuPermission();
-
-            var iResult = this._menuRepository.Add(m);
-            return iResult.Result;
         }
     }
 }

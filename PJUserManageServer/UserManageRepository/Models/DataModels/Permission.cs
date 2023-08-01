@@ -7,11 +7,6 @@ namespace UserManageRepository.DataModels.Data
     {
         public int PermissionsId { get; set; }
         public string? PermissionsName { get; set; }
-        public eStatus Status { get; set; }
-
-        public enum eStatus {
-            stop = 0,
-            active =1,
-        }
+        public byte? Status { get; set; }
     }
 }
