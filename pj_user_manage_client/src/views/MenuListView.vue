@@ -43,6 +43,7 @@ import Mytest from "../components/Menu/test.vue";
 import IPermission from "../dist/ts/interfaces/IPermission";
 
 
+
 export default defineComponent({
   name: "MenuListView",
   components: {

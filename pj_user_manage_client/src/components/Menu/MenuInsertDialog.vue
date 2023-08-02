@@ -59,6 +59,7 @@ import IMenu from "../../dist/ts/interfaces/IMenu";
 import IPermission from "../../dist/ts/interfaces/IPermission";
 import { default as axios } from "axios";
 
+
 interface RuleForm {
   menuName: string;
   permissionsId: string;
