@@ -20,7 +20,7 @@
         </el-form-item>
         <el-form-item label="權限類型" prop="permissionsId">
           <el-select
-            v-model="ruleForm.permissionsId"
+            v-model="ruleForm.permissionsId"  class="selectddl"
             placeholder="Activity zone"
           >
             <el-option
@@ -205,3 +205,10 @@ const options = Array.from({ length: 10000 }).map((_, idx) => ({
   label: `${idx + 1}`,
 }));
 </script>
+
+<style scoped>
+.selectddl{
+  width: 200px;
+}
+
+</style>

@@ -7,6 +7,8 @@ namespace UserManageRepository.DataModels.Data
     {
         public int MenuPermissionsId { get; set; }
         public string? MenuPermissionsName { get; set; }
+        public string? MenuPermissionsType { get; set; }
+        
         public int? MenuId { get; set; }
         public int? PermissionsId { get; set; }
 

@@ -17,6 +17,9 @@ namespace UserManageRepository.DataModels.Data
         public string? PermissionsId { get; set; }
         public string? CustomizedUserId { get; set; }
 
+        public DateTime? CreateDate { get; set; }
+
+        public string? CreateUser { get; set; }
         public virtual ICollection<MenuPermission> MenuPermissions { get; set; }
     }
 }

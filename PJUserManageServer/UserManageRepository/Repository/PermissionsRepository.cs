@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Generally;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 using System.Data;
 using UserManageRepository.DataModels.Data;
 using UserManageRepository.Models.Input;
@@ -32,7 +33,20 @@ namespace UserManageRepository.Repository
         {
             MsDBConn_Dapper _DBconn = new MsDBConn_Dapper(_config);
             var parmerter = new DynamicParameters();
-            var result = 0;
+            Menu m = new Menu();
+            m.MenuName = pi.MenuName;
+            m.Status = 1;
+            m.CreateDate = DateTime.Now;
+            m.CreateUser = pi.UserId;//需要修正
+            m.MenuType = 1;
+            var result = _DBconn.Insert<Menu>("Menu", m);
+            var NewM = this._menuRepository.GetMenu_for_MenuName(m.MenuName);
+            MenuPermission mp = new MenuPermission();
+            mp.MenuId = getdate();
+            mp.MenuPermissionsType = "";
+            mp.PermissionsId = pi.PermissionsId;
+            var result = _DBconn.Insert<MenuPermission>("MenuPermissions", mp);
+    
             return result;
 
         }

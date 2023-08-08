@@ -86,6 +86,20 @@ namespace UserManageRepository.Repository
             return result;
         }
 
+        public async Task<Menu> GetMenu_for_MenuName(MenuInput input)
+        {
+            _DBconn = new MsDBConn2(_config);
+            var paramters = new DynamicParameters();
+            paramters.Add("MenuName", input.MenuName);
+            var sqlCmd = @" 
+            select *
+            from Menu
+            where MenuName=@MenuName
+            ";
+            var result = _DBconn.QueryData<Menu, DynamicParameters>(sqlCmd, paramters).Result.FirstOrDefault();
+            return result;
+        }
+
 
         public async Task<IEnumerable<MenuVM>> GetAllMenu()
         {

@@ -39,10 +39,14 @@ namespace UserManageRepository.Service
             m.Status = 1;
             m.MenuType = 1;
             m.PermissionsId = mi.PermissionsId.ToString();
+            var iResult = this._menuRepository.Add(m);
+
 
             MenuPermission p = new MenuPermission();
-
-            var iResult = this._menuRepository.Add(m);
+            p.MenuId = NewM.Id;
+            p.PermissionsId = mi.PermissionsId;
+            p.MenuPermissionsType = "1";
+            var iResult = this._permissionsRepository.Add(p);
             return iResult.Result;
         }
     }

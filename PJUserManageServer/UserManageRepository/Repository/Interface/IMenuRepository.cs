@@ -12,6 +12,8 @@ namespace UserManageRepository.Repository.Interface
         Task<IList<MenuVM>> GetMenu_for_User(MenuInput input);
         Task<IEnumerable<MenuVM>> GetAllMenu();
 
+        Task<Menu> GetMenu_for_MenuName(string MenuName);
+
         Task<int> Add(Menu mi);
     }
 }

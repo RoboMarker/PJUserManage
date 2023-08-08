@@ -8,6 +8,6 @@ namespace UserManageRepository.Models.Input
 {
     public class BaseInput
     {
-        public string UserId { get; set; }
+        public string? UserId { get; set; }
     }
 }
