@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace UserManageRepository.Models.Data
+﻿namespace UserManageRepository.Models.Data
 {
     public partial class Menu
     {

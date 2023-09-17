@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UserManageRepository.DataModels.Data;
+﻿using UserManageRepository.Models.Data;
 using UserManageRepository.Models.Input;
 using UserManageRepository.Models.ViewModels;
 using UserManageRepository.Repository.Interface;
@@ -24,10 +19,31 @@ namespace UserManageRepository.Service
             return await this._ipermissionsRepository.GetAllMenu();
         }
 
-        public async Task<int> Add(PermissionInpurt pi)
+        public async Task<Permission> Add(PermissionInpurt pi)
         {
             //MenuPermission mp = new MenuPermission();
-            return await this._ipermissionsRepository.Add(pi);
+            //MenuPermission p = new MenuPermission();
+            //p.PermissionsName = pi.MenuName;
+
+            // this._ipermissionsRepository.Add(p);
+
+            //Menu m = new Menu();
+            //m.MenuName = pi.MenuName;
+            //m.Status = 1;
+            //m.CreateDate = DateTime.Now;
+            //m.CreateUser = pi.UserId;//需要修正
+            //m.MenuType = 1;
+            //var result = _DBconn.Insert<Menu>("Menu", m);
+            //var NewM = this._menuRepository.GetMenu_for_MenuName(m.MenuName);
+
+            //MenuPermission mp = new MenuPermission();
+            //mp.MenuId = NewM.Id;
+            //mp.MenuPermissionsType = "";
+            //mp.PermissionsId = pi.PermissionsId;
+            //var result = _DBconn.Insert<MenuPermission>("MenuPermissions", mp);
+            //var result = 0;
+            return null;
+
         }
 
         public async Task<int> Update(int MenuPermissionsId, MenuPermission mp)

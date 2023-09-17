@@ -1,4 +1,4 @@
-﻿using UserManageRepository.DataModels.Data;
+﻿using UserManageRepository.Models.Data;
 using UserManageRepository.Models.Input;
 using UserManageRepository.Models.ViewModels;
 
@@ -8,9 +8,9 @@ namespace UserManageRepository.Repository.Interface
     {
          Task<IEnumerable<PermissionVM>> GetAllMenu();
 
-        Task<int> Add(PermissionInpurt pi);
+        Task<Permission> Add(Permission pi);
 
-        Task<int> Update(int MenuPermissionsId,MenuPermission mp);
+        Task<int> Update(int MenuPermissionsId, Models.Data.MenuPermission mp);
 
         Task<int> Delete(int MenuPermissionsId);
     }

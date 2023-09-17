@@ -1,10 +1,9 @@
 ﻿using Dapper;
 using Generally;
 using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
 using System.Data;
-using UserManageRepository.DataModels.Data;
-using UserManageRepository.Models.Input;
+using UserManageRepository.Context;
+using UserManageRepository.Models.Data;
 using UserManageRepository.Models.ViewModels;
 using UserManageRepository.Repository.Interface;
 
@@ -15,10 +14,12 @@ namespace UserManageRepository.Repository
         private readonly IDbConnection _conn;
         private readonly IConfiguration _config;
         MsDBConn2 _DBconn = null;
-        public PermissionsRepository(IDbConnection conn, IConfiguration config)
+        private readonly dbCustomDbSampleContext _dbContext;
+        public PermissionsRepository(IDbConnection conn, IConfiguration config, dbCustomDbSampleContext dbContext)
         {
             this._conn = conn;
             _config = config;
+            _dbContext = dbContext;
         }
         public async Task<IEnumerable<PermissionVM>> GetAllMenu()
         {
@@ -29,25 +30,11 @@ namespace UserManageRepository.Repository
 
         }
 
-        public async Task<int> Add(PermissionInpurt pi)
+        public async Task<Permission> Add(Permission pi)
         {
-            MsDBConn_Dapper _DBconn = new MsDBConn_Dapper(_config);
-            var parmerter = new DynamicParameters();
-            Menu m = new Menu();
-            m.MenuName = pi.MenuName;
-            m.Status = 1;
-            m.CreateDate = DateTime.Now;
-            m.CreateUser = pi.UserId;//需要修正
-            m.MenuType = 1;
-            var result = _DBconn.Insert<Menu>("Menu", m);
-            var NewM = this._menuRepository.GetMenu_for_MenuName(m.MenuName);
-            MenuPermission mp = new MenuPermission();
-            mp.MenuId = getdate();
-            mp.MenuPermissionsType = "";
-            mp.PermissionsId = pi.PermissionsId;
-            var result = _DBconn.Insert<MenuPermission>("MenuPermissions", mp);
-    
-            return result;
+           var result= await _dbContext.AddAsync(pi);
+            await _dbContext.SaveChangesAsync(); // 将更改保存到数据库
+            return result.Entity; // 返回实体
 
         }
         public async Task<int> Update(int MenuPermissionsId, MenuPermission mp)

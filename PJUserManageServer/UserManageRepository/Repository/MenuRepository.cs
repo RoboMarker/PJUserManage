@@ -1,8 +1,10 @@
 ﻿using Dapper;
 using Generally;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.SqlTypes;
+using UserManageRepository.Context;
 using UserManageRepository.DataModels.Data;
 using UserManageRepository.Models.Input;
 using UserManageRepository.Models.ViewModels;
@@ -10,17 +12,18 @@ using UserManageRepository.Repository.Interface;
 
 namespace UserManageRepository.Repository
 {
-    public class MenuRepository: IMenuRepository
+    public class MenuRepository:IMenuRepository
     {
         private readonly IDbConnection _conn;
         private readonly IConfiguration _config;
         MsDBConn2 _DBconn = null;
-        public MenuRepository(IDbConnection conn, IConfiguration config)
+        private readonly dbCustomDbSampleContext _dbContext;
+        public MenuRepository(IDbConnection conn, IConfiguration config, dbCustomDbSampleContext dbContext)
         {
             this._conn = conn;
             _config = config;
+            _dbContext = dbContext;
         }
-
 
         public async Task<IList<MenuVM>> GetMenu_For_All2(MenuInput input)
         {
@@ -86,20 +89,19 @@ namespace UserManageRepository.Repository
             return result;
         }
 
-        public async Task<Menu> GetMenu_for_MenuName(MenuInput input)
+        public async Task<Models.Data.Menu> GetMenu_for_MenuName(string sMenuName)
         {
             _DBconn = new MsDBConn2(_config);
             var paramters = new DynamicParameters();
-            paramters.Add("MenuName", input.MenuName);
+            paramters.Add("MenuName", sMenuName);
             var sqlCmd = @" 
             select *
             from Menu
             where MenuName=@MenuName
             ";
-            var result = _DBconn.QueryData<Menu, DynamicParameters>(sqlCmd, paramters).Result.FirstOrDefault();
+            var result = _DBconn.QueryData<Models.Data.Menu, DynamicParameters>(sqlCmd, paramters).Result.FirstOrDefault();
             return result;
         }
-
 
         public async Task<IEnumerable<MenuVM>> GetAllMenu()
         {
@@ -107,19 +109,6 @@ namespace UserManageRepository.Repository
             var sqlCmd = @" select * from Menu ";
             var result = await _DBconn.QueryData<MenuVM>(sqlCmd);
             return  result;
-
-        }
-
-        public async Task<int> Add(Menu pi)
-        {
-            MsDBConn_Dapper _DBconn = new MsDBConn_Dapper(_config);
-            var parmerter = new DynamicParameters();
-
-           // var result = await _DBconn.Insert<Menu>(sqlCmd);
-            // var result = await _DBconn.ExecuteData2<MenuPermission>(sqlCmd, mp);
-
-            var result = 1;
-            return result;
 
         }
 

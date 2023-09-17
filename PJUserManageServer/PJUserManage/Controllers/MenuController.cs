@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UserManageRepository.Context;
-using UserManageRepository.Interface;
 using UserManageRepository.Models.Input;
 using UserManageRepository.Service.Interface;
 
@@ -18,9 +16,17 @@ namespace PJUserManage.Controllers
         }
 
         [HttpPost]
-        public async Task<int> Add(MenuInput mp)
+        public async Task<bool> Add(MenuInput mp)
         {
-            return await this._imenuService.Add(mp);
+            try
+            {
+                 var bResult=await this._imenuService.Add(mp);
+                return bResult;
+            }
+            catch
+            { 
+                return false;
+            }
         }
 
 

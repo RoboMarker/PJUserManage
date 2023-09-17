@@ -8,6 +8,6 @@ namespace UserManageRepository.Service.Interface
     {
         Task<IEnumerable<MenuVM>> GetUserHaveMenu(MenuInput input);
         Task<IEnumerable<MenuVM>> GetAllMenu();
-        Task<int> Add(MenuInput mi);
+        Task<bool> Add(MenuInput mi);
      }
 }

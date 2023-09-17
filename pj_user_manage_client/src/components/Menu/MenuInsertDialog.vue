@@ -10,7 +10,7 @@
         ref="ruleFormRef"
         :model="ruleForm"
         :rules="rules"
-        label-width="120px"
+        width="120px"
         class="demo-ruleForm"
         :size="formSize"
         status-icon
@@ -160,7 +160,7 @@ const add = async (formEl: FormInstance | undefined) => {
 
   await formEl.validate((valid, fields) => {
     if (valid) {
-      let vNewUrl = "https://localhost:44346/api/Permissions/";
+      let vNewUrl = "https://localhost:44346/api/Menu/";
       axios({
         method: "post",
         url: vNewUrl,

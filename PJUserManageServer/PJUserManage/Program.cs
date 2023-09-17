@@ -12,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.AddScoped<IMenuService, MenuService>();
 builder.Services.AddScoped< IPermissionsService ,PermissionsService > ();
 BuilderExtender.AddDbContexts(builder);//將註冊地方更改為UserManageRepository專案

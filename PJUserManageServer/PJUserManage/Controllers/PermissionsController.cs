@@ -4,6 +4,7 @@ using UserManageRepository.Models.Input;
 using UserManageRepository.Models.ViewModels;
 using UserManageRepository.Service.Interface;
 
+
 namespace PJUserManage.Controllers
 {
     [ApiController]
@@ -25,11 +26,12 @@ namespace PJUserManage.Controllers
         [HttpPost]
         public async Task<int> Add(PermissionInpurt mp)
         {
-            return await this._permissionsService.Add(mp);
+           var result= this._permissionsService.Add(mp);
+            return 1;
         }
 
         [HttpPut]
-        public async Task<int> Update(int MenuPermissionsId, MenuPermission mp)
+        public async Task<int> Update(int MenuPermissionsId, UserManageRepository.Models.Data.MenuPermission mp)
         {
             return await this._permissionsService.Update(MenuPermissionsId, mp);
         }
